@@ -1,14 +1,14 @@
 {
-  "books": [
+  "jobs": [
     {
       "id": 1,
-      "title": "Book Updated",
+      "title": "Job Updated 1",
       "description": "Description Updated",
       "author": "Author Updated"
     },
     {
       "id": 2,
-      "title": "Book 2",
+      "title": "Job 2",
       "description": "Description 2",
       "author": "Author 2"
     }

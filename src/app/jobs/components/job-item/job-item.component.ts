@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from '../../models/book.model';
+import { Job } from '../../models/job.model';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
-  selector: 'app-book-item',
-  templateUrl: './book-item.component.html',
-  styleUrls: ['./book-item.component.scss']
+  selector: 'app-job-item',
+  templateUrl: './job-item.component.html',
+  styleUrls: ['./job-item.component.scss']
 })
-export class BookItemComponent implements OnInit {
+export class JobItemComponent implements OnInit {
 
-  @Input() book: Book;
+  @Input() job: Job;
 
   @Output() deleteClicked = new EventEmitter<number>();
 
@@ -23,6 +23,6 @@ export class BookItemComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.deleteClicked.emit(this.book.id);
+    this.deleteClicked.emit(this.job.id);
   }
 }

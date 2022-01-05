@@ -1,18 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Book } from '../../models/book.model';
-import { BooksService } from '../../services/books.service';
+import { Job } from '../../models/job.model';
+import { JobsService } from '../../services/jobs.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { title } from '../../validators/title.validator';
 
 @Component({
-  selector: 'app-book-form',
-  templateUrl: './book-form.component.html',
-  styleUrls: ['./book-form.component.scss']
+  selector: 'app-job-form',
+  templateUrl: './job-form.component.html',
+  styleUrls: ['./job-form.component.scss']
 })
-export class BookFormComponent implements OnInit, OnDestroy {
+export class JobFormComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
 
@@ -22,7 +22,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private booksService: BooksService
+    private jobsService: JobsService
   ) {
   }
 
@@ -34,7 +34,7 @@ export class BookFormComponent implements OnInit, OnDestroy {
         const id = params.id;
 
         if (id) {
-          return this.booksService.getBook$(id);
+          return this.jobsService.getJob$(id);
         }
 
         return of(null);
@@ -53,29 +53,29 @@ export class BookFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const book = this.formGroup.value as Book;
+    const job = this.formGroup.value as Job;
 
     let request$;
 
-    if (!book.id) {
-      request$ = this.booksService.postBook$(book);
+    if (!job.id) {
+      request$ = this.jobsService.postJob$(job);
     } else {
-      request$ = this.booksService.putBook$(book);
+      request$ = this.jobsService.putJob$(job);
     }
 
     request$.subscribe({
       next: () => {
-        this.router.navigate(['/main', 'books']);
+        this.router.navigate(['/main', 'jobs']);
       }
     });
   }
 
-  private buildForm(book?: Book): void {
+  private buildForm(job?: Job): void {
     this.formGroup = this.fb.group({
-      id: book?.id,
-      title: [book?.title || '', [Validators.required, title()]],
-      description: [book?.description || ''],
-      author: [book?.author || '', [Validators.required]]
+      id: job?.id,
+      title: [job?.title || '', [Validators.required, title()]],
+      description: [job?.description || ''],
+      author: [job?.author || '', [Validators.required]]
     });
   }
 }

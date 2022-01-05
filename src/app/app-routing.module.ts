@@ -11,7 +11,7 @@ const routes: Route[] = [
   },
   {
     path: 'main',
-    loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
+    loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule),
     canLoad: [AuthGuard]
   },
   {

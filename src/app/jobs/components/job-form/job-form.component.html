@@ -1,19 +1,18 @@
-<a routerLink="/main/books">Back to list</a>
+<a routerLink="/main/jobs">Back to list</a>
 
-<h3>{{ formGroup?.get('id')?.value ? 'Edit book' : 'Add new book' }}</h3>
+<h3>{{ formGroup?.get('id')?.value ? 'Edit job' : 'Add new job' }}</h3>
 
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <div>
     <label for="title">Title:</label>
     <input type="text" id="title" formControlName="title">
 
-    <small style="color: red"
-           *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('required')">
+    <small style="color: red" *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('required')">
       This field is required
     </small>
 
     <small style="color: red"
-           *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('patternTitle')">
+      *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('patternTitle')">
       Title should contain at least one number
     </small>
   </div>
@@ -27,8 +26,7 @@
     <label for="author">Author:</label>
     <input type="text" id="author" formControlName="author">
 
-    <small style="color: red"
-           *ngIf="formGroup.get('author')?.touched && formGroup.get('author')?.hasError('required')">
+    <small style="color: red" *ngIf="formGroup.get('author')?.touched && formGroup.get('author')?.hasError('required')">
       This field is required
     </small>
   </div>
