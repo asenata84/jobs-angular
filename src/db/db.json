@@ -4,25 +4,73 @@
       "id": 1,
       "title": "Job Updated 1",
       "description": "Description Updated",
-      "author": "Author Updated"
+      "type": "part-time",
+      "catId": 1
     },
     {
       "id": 2,
       "title": "Job 2",
       "description": "Description 2",
-      "author": "Author 2"
+      "type": "full-time",
+      "catId": 2
+    }
+  ],
+  "likes": [
+    {
+      "id": 1,
+      "userId": 1,
+      "jobId": 1
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "jobId": 2
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "jobId": 2
+    }
+  ],
+  "candidates": [
+    {
+      "id": 1,
+      "userId": 1,
+      "jobId": 1
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "jobId": 2
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "jobId": 2
+    }
+  ],
+  "cats": [
+    {
+      "id": 1,
+      "name": "Office administration"
+    },
+    {
+      "id": 2,
+      "name": "Development"
     }
   ],
   "users": [
     {
       "id": 1,
-      "username": "admin",
-      "password": "123",
+      "username": "organization",
+      "email": "organization@foo.bar",
+      "password": "organization",
       "role": "admin"
     },
     {
       "id": 2,
       "username": "user",
+      "email": "user@foo.bar",
       "password": "user",
       "role": "user"
     }
