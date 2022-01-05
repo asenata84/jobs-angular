@@ -1,0 +1,12 @@
+<nav class="nav-menu">
+  <ul>
+    <li>Home</li>
+
+    <li routerLink="/main/books"
+        class="stretched">Books</li>
+
+    <li *ngIf="hasUser"
+        (click)="onLogout()"
+        class="pointer">Logout</li>
+  </ul>
+</nav>

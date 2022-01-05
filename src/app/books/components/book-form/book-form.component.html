@@ -1,0 +1,41 @@
+<a routerLink="/main/books">Back to list</a>
+
+<h3>{{ formGroup?.get('id')?.value ? 'Edit book' : 'Add new book' }}</h3>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" formControlName="title">
+
+    <small style="color: red"
+           *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('required')">
+      This field is required
+    </small>
+
+    <small style="color: red"
+           *ngIf="formGroup.get('title')?.touched && formGroup.get('title')?.hasError('patternTitle')">
+      Title should contain at least one number
+    </small>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label for="author">Author:</label>
+    <input type="text" id="author" formControlName="author">
+
+    <small style="color: red"
+           *ngIf="formGroup.get('author')?.touched && formGroup.get('author')?.hasError('required')">
+      This field is required
+    </small>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="formGroup.invalid">
+      {{ formGroup?.get('id')?.value ? 'Save' : 'Add' }}
+    </button>
+  </div>
+</form>

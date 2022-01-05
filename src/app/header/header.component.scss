@@ -1,0 +1,22 @@
+.nav-menu {
+
+  ul {
+    background-color: #ccc;
+    display: flex;
+
+    li {
+      list-style: none;
+      color: black;
+      padding: 15px;
+
+      &.stretched {
+        flex-grow: 1;
+      }
+
+      &.pointer {
+        cursor: pointer;
+      }
+    }
+  }
+
+}

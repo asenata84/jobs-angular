@@ -1,0 +1,11 @@
+<article>
+  <h3>{{ book.title }}</h3>
+
+  <p>{{ book.description }}</p>
+
+  <div *ngIf="hasPermissions">
+    <a class="button-edit" [routerLink]="['/main', 'books', 'edit', book.id]">Edit</a>
+    <button class="button-delete" (click)="onDelete()">Delete</button>
+  </div>
+
+</article>
