@@ -2,51 +2,46 @@
   "jobs": [
     {
       "id": 1,
-      "title": "Job Updated 1",
-      "description": "Description Updated",
-      "type": "part-time",
-      "catId": 1
+      "title": "title 1",
+      "description": "asd",
+      "typeId": "1",
+      "catId": "1"
     },
     {
       "id": 2,
-      "title": "Job 2",
-      "description": "Description 2",
-      "type": "full-time",
-      "catId": 2
+      "title": "Title 2",
+      "description": "asdsd",
+      "typeId": "1",
+      "catId": "1"
     }
   ],
-  "likes": [
-    {
-      "id": 1,
-      "userId": 1,
-      "jobId": 1
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "jobId": 2
-    },
-    {
-      "id": 3,
-      "userId": 2,
-      "jobId": 2
-    }
-  ],
+  "likes": [],
   "candidates": [
     {
+      "userId": 2,
+      "jobId": 1,
+      "status": "declined",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "jobId": 2,
+      "status": "approved",
+      "id": 2
+    }
+  ],
+  "types": [
+    {
       "id": 1,
-      "userId": 1,
-      "jobId": 1
+      "name": "Full Time"
     },
     {
       "id": 2,
-      "userId": 1,
-      "jobId": 2
+      "name": "Part Time"
     },
     {
       "id": 3,
-      "userId": 2,
-      "jobId": 2
+      "name": "Remote"
     }
   ],
   "cats": [
@@ -62,14 +57,14 @@
   "users": [
     {
       "id": 1,
-      "username": "organization",
+      "name": "organization",
       "email": "organization@foo.bar",
       "password": "organization",
-      "role": "admin"
+      "role": "organization"
     },
     {
       "id": 2,
-      "username": "user",
+      "name": "user",
       "email": "user@foo.bar",
       "password": "user",
       "role": "user"

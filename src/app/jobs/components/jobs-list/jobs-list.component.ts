@@ -3,6 +3,7 @@ import { Job } from '../../models/job.model';
 import { JobsService } from '../../services/jobs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../auth/services/auth.service';
+import { User } from 'src/app/auth/models/user.model';
 
 @Component({
   selector: 'app-jobs-list',
@@ -14,16 +15,15 @@ export class JobsListComponent implements OnInit {
   jobs: Job[];
 
   hasPermissions: boolean;
+  loggedUser: User;
 
   constructor(
     private authService: AuthService,
-    private jobsService: JobsService
+    private jobsService: JobsService,
   ) {
   }
 
-  ngOnInit(): void {
-    this.hasPermissions = this.authService.hasPermissions('admin');
-
+  getJobs() {
     this.jobsService.getJobs$().subscribe({
       next: (response: Job[]) => {
         this.jobs = response;
@@ -34,10 +34,37 @@ export class JobsListComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.hasPermissions = this.authService.hasPermissions('organization');
+    this.loggedUser = this.authService.getLoggedUserFromLocalStorage();
+
+    this.getJobs();
+  }
+
   onDelete(id: number): void {
     this.jobsService.deleteJob$(id).subscribe({
       next: () => {
         this.jobs = this.jobs.filter(job => job.id !== id);
+      }
+    });
+  }
+
+  onApply(id: number): void {
+    this.jobsService.postCandidates$({
+      userId: this.loggedUser?.id,
+      jobId: id,
+      status: null,
+    }).subscribe({
+      next: () => {
+        this.getJobs();
+      }
+    });
+  }
+
+  onRemoveApply(id: number): void {
+    this.jobsService.deleteCandidate$(id).subscribe({
+      next: () => {
+        this.getJobs();
       }
     });
   }

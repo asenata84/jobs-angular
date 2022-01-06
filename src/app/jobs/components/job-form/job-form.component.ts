@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Job } from '../../models/job.model';
+import { Job, Category, Type } from '../../models/job.model';
 import { JobsService } from '../../services/jobs.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -15,7 +15,8 @@ import { title } from '../../validators/title.validator';
 export class JobFormComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
-
+  categories: Category[];
+  types: Type[];
   destroy$ = new Subject<boolean>();
 
   constructor(
@@ -28,6 +29,18 @@ export class JobFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.buildForm();
+
+    this.jobsService.getCategories$().subscribe({
+      next: (response) => {
+        this.categories = response;
+      }
+    });
+
+    this.jobsService.getTypes$().subscribe({
+      next: (response) => {
+        this.types = response;
+      }
+    });
 
     this.route.params.pipe(
       switchMap((params) => {
@@ -75,7 +88,8 @@ export class JobFormComponent implements OnInit, OnDestroy {
       id: job?.id,
       title: [job?.title || '', [Validators.required, title()]],
       description: [job?.description || ''],
-      author: [job?.author || '', [Validators.required]]
+      typeId: job?.typeId || this.types && this.types[0]?.id,
+      catId: job?.catId || this.categories && this.categories[0]?.id,
     });
   }
 }

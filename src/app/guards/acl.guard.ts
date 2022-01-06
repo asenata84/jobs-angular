@@ -14,7 +14,7 @@ export class AclGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.authService.hasPermissions('admin')) {
+    if (!this.authService.hasPermissions('organization')) {
       this.router.navigate(['/main']);
 
       return false;

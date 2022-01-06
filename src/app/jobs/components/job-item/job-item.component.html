@@ -3,9 +3,19 @@
 
   <p>{{ job.description }}</p>
 
-  <div *ngIf="hasPermissions">
+  <div *ngIf="hasOrganizationPermissions">
     <a class="button-edit" [routerLink]="['/main', 'jobs', 'edit', job.id]">Edit</a>
+    <a class="button-edit" [routerLink]="['/main', 'jobs', job.id, 'candidates']">Candidates</a>
     <button class="button-delete" (click)="onDelete()">Delete</button>
+  </div>
+
+  <div *ngIf="hasUserPermissions">
+    <button *ngIf="!candidate?.status" class="button-edit" (click)="candidate?.id ? onRemoveApply() : onApply()">{{
+      candidate?.id
+      ? 'Remove candidate'
+      : 'Apply for this job'
+      }}</button>
+    <p *ngIf="candidate?.status" [ngClass]="candidate?.status">{{candidate?.status}}</p>
   </div>
 
 </article>

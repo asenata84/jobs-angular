@@ -4,6 +4,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { JobsListComponent } from './components/jobs-list/jobs-list.component';
 import { JobFormComponent } from './components/job-form/job-form.component';
 import { AclGuard } from '../guards/acl.guard';
+import { CandidatesListComponent } from './components/candidates-list/candidates-list.component';
 
 const routes: Route[] = [
   {
@@ -22,6 +23,11 @@ const routes: Route[] = [
       {
         path: 'jobs/edit/:id',
         component: JobFormComponent,
+        canActivate: [AclGuard]
+      },
+      {
+        path: 'jobs/:id/candidates',
+        component: CandidatesListComponent,
         canActivate: [AclGuard]
       },
       {

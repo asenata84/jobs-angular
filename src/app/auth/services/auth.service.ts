@@ -19,7 +19,7 @@ export class AuthService {
   login$(data: Login): Observable<User> {
     return this.http.get<User[]>(`${environment.apiUrl}/users`).pipe(
       map((response: User[]) => {
-        const user = response.find((u => u.username === data.username && u.password === data.password));
+        const user = response.find((u => u.email === data.email && u.password === data.password));
 
         if (!user) {
           return null;

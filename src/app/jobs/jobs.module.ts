@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JobsRoutingModule } from './jobs-routing.module';
+import { CandidatesListComponent } from './components/candidates-list/candidates-list.component';
+import { CandidatesItemComponent } from './components/candidates-item/candidates-item.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { JobsRoutingModule } from './jobs-routing.module';
     JobsListComponent,
     JobItemComponent,
     JobFormComponent,
-    JobsComponent
+    JobsComponent,
+    CandidatesListComponent,
+    CandidatesItemComponent,
   ]
 })
 export class JobsModule {

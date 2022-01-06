@@ -1,0 +1,8 @@
+<div>
+  <h2>Candidates</h2>
+
+  <section>
+    <app-candidates-item *ngFor="let candidate of candidates" [candidate]="candidate"
+      (updateStatusClicked)="onUpdateStatus($event)"></app-candidates-item>
+  </section>
+</div>

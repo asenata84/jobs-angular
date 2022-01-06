@@ -1,0 +1,10 @@
+<article>
+  <h3>{{ candidate?.userId }}</h3>
+
+  <div *ngIf="hasPermissions">
+    <button *ngIf="!candidate?.status || candidate?.status === 'declined'" class="button-edit"
+      (click)="onUpdateStatus('approved')">Approve</button>
+    <button *ngIf="candidate?.status === 'approved'" class="button-delete"
+      (click)="onUpdateStatus('declined')">Decline</button>
+  </div>
+</article>
