@@ -15,6 +15,10 @@
       ? 'Remove candidate'
       : 'Apply for this job'
       }}</button>
+    <span>{{likesCount}}</span>&nbsp;
+    <button class="button-edit" (click)="isAlreadyLiked ? onRemoveLike() : onAddLike()">{{isAlreadyLiked
+      ? 'Unlike'
+      : 'Like'}}</button>
     <p *ngIf="candidate?.status" [ngClass]="candidate?.status">{{candidate?.status}}</p>
   </div>
 

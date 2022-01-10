@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Candidate, Category, Job } from '../models/job.model';
+import { Candidate, Category, Job, Like } from '../models/job.model';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,7 +15,7 @@ export class JobsService {
   }
 
   getJobs$(): Observable<Job[]> {
-    return this.http.get<Job[]>(`${environment.apiUrl}/jobs`);
+    return this.http.get<Job[]>(`${environment.apiUrl}/jobs?_embed=likes`);
   }
 
   getCategories$(): Observable<Category[]> {
@@ -30,12 +30,25 @@ export class JobsService {
     return this.http.get<Candidate[]>(`${environment.apiUrl}/candidates?userId=${userId}&jobId=${jobId}`);
   }
 
+
   postCandidates$(candidate: Candidate): Observable<Candidate> {
     return this.http.post<Candidate>(`${environment.apiUrl}/candidates`, candidate);
   }
 
   patchCandidate$(id: number, data: any): Observable<Candidate> {
     return this.http.patch<Candidate>(`${environment.apiUrl}/candidates/${id}`, data);
+  }
+
+  getLikes$(): Observable<Like[]> {
+    return this.http.get<Like[]>(`${environment.apiUrl}/likes`);
+  }
+
+  postLikes$(data: any): Observable<Like> {
+    return this.http.post<Like>(`${environment.apiUrl}/likes`, data);
+  }
+
+  deleteLike$(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/likes/${id}`);
   }
 
   deleteCandidate$(id: number): Observable<void> {

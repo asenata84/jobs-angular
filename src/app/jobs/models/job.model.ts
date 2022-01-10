@@ -4,6 +4,7 @@ export interface Job {
   description?: string;
   typeId: string;
   catId: number;
+  likes?: Like[]
 }
 
 export interface Category {
@@ -19,6 +20,12 @@ export interface Type {
 export interface Candidate {
   id?: number;
   status?: string;
+  userId: number;
+  jobId: number;
+}
+
+export interface Like {
+  id?: number;
   userId: number;
   jobId: number;
 }

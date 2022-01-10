@@ -5,6 +5,8 @@
 
   <section>
     <app-job-item *ngFor="let job of jobs" [job]="job" (deleteClicked)="onDelete($event)"
-      (applyClicked)="onApply($event)" (removeApplyClicked)="onRemoveApply($event)"></app-job-item>
+      (applyClicked)="onApply($event)" (removeApplyClicked)="onRemoveApply($event)" (addLikeClicked)="onAddLike($event)"
+      (removeLikeClicked)="onRemoveLike($event)">
+    </app-job-item>
   </section>
 </div>

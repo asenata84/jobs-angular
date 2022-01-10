@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Candidate, Job } from '../../models/job.model';
+import { Candidate, Job, Like } from '../../models/job.model';
 import { AuthService } from '../../../auth/services/auth.service';
 import { JobsService } from '../../services/jobs.service';
 import { User } from 'src/app/auth/models/user.model';
@@ -16,11 +16,16 @@ export class JobItemComponent implements OnInit {
   @Output() deleteClicked = new EventEmitter<number>();
   @Output() applyClicked = new EventEmitter<number>();
   @Output() removeApplyClicked = new EventEmitter<number>();
+  @Output() addLikeClicked = new EventEmitter<Like>();
+  @Output() removeLikeClicked = new EventEmitter<number>();
 
   hasOrganizationPermissions: boolean;
   hasUserPermissions: boolean;
   candidate?: Candidate;
   loggedUser: User;
+  likesCount: number = 0;
+  isAlreadyLiked: boolean;
+  likeId: number;
 
   constructor(
     private authService: AuthService,
@@ -41,6 +46,9 @@ export class JobItemComponent implements OnInit {
     this.hasUserPermissions = this.authService.hasPermissions('user');
     this.loggedUser = this.authService.getLoggedUserFromLocalStorage();
     this.checkIsCandidate();
+    this.likesCount = this.job?.likes?.length;
+    this.likeId = this.job?.likes?.find((item) => item.userId?.toString() === this.loggedUser?.id?.toString())?.id;
+    this.isAlreadyLiked = !!this.likeId
   }
 
   onDelete(): void {
@@ -52,6 +60,17 @@ export class JobItemComponent implements OnInit {
   }
 
   onRemoveApply(): void {
-    this.removeApplyClicked.emit(this.candidate?.id);
+    this.removeApplyClicked.emit(this.job.id);
+  }
+
+  onAddLike(): void {
+    this.addLikeClicked.emit({
+      userId: this.loggedUser?.id,
+      jobId: this.job?.id,
+    });
+  }
+
+  onRemoveLike(): void {
+    this.likeId && this.removeLikeClicked.emit(this.likeId);
   }
 }

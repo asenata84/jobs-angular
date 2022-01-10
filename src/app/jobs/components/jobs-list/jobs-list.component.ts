@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Job } from '../../models/job.model';
+import { Job, Like } from '../../models/job.model';
 import { JobsService } from '../../services/jobs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../auth/services/auth.service';
@@ -63,6 +63,22 @@ export class JobsListComponent implements OnInit {
 
   onRemoveApply(id: number): void {
     this.jobsService.deleteCandidate$(id).subscribe({
+      next: () => {
+        this.getJobs();
+      }
+    });
+  }
+
+  onAddLike(data: Like): void {
+    this.jobsService.postLikes$(data).subscribe({
+      next: () => {
+        this.getJobs();
+      }
+    });
+  }
+
+  onRemoveLike(id: number): void {
+    this.jobsService.deleteLike$(id).subscribe({
       next: () => {
         this.getJobs();
       }
