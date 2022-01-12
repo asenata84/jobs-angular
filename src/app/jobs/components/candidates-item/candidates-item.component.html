@@ -1,4 +1,4 @@
-<article>
+<article [class]="candidate?.status === 'approved' && 'approved'">
   <h3>{{ candidate?.userId }}</h3>
 
   <div *ngIf="hasPermissions">
