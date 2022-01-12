@@ -10,6 +10,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 export class CandidatesItemComponent implements OnInit {
 
   @Input() candidate: Candidate;
+  @Input() hasApprovedCandidate: boolean;
 
   @Output() updateStatusClicked = new EventEmitter<{ id: number, status: string }>();
 

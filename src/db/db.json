@@ -25,13 +25,13 @@
     {
       "userId": 2,
       "jobId": 1,
-      "status": "approved",
+      "status": "declined",
       "id": 1
     },
     {
       "userId": 3,
       "jobId": 1,
-      "status": "approved",
+      "status": "declined",
       "id": 2
     }
   ],

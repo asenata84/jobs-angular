@@ -3,6 +3,7 @@
 
   <section>
     <app-candidates-item *ngFor="let candidate of candidates" [candidate]="candidate"
-      (updateStatusClicked)="onUpdateStatus($event)"></app-candidates-item>
+      [hasApprovedCandidate]="hasApprovedCandidate" (updateStatusClicked)="onUpdateStatus($event)">
+    </app-candidates-item>
   </section>
 </div>

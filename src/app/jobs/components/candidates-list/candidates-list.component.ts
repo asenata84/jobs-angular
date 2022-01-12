@@ -15,6 +15,7 @@ export class CandidatesListComponent implements OnInit {
 
   candidates: Candidate[];
   hasPermissions: boolean;
+  hasApprovedCandidate: boolean;
   destroy$ = new Subject<boolean>();
 
   constructor(
@@ -39,6 +40,7 @@ export class CandidatesListComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         this.candidates = response;
+        this.hasApprovedCandidate = !!this.candidates?.find((item) => item?.status === 'approved')
       }
     });
   }
