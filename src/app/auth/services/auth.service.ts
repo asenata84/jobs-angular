@@ -74,4 +74,8 @@ export class AuthService {
   getUserByEmail$(email: string): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiUrl}/users?email=${email}`);
   }
+
+  deleteUser$(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/users/${id}`);
+  }
 }

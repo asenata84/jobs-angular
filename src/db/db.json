@@ -2,14 +2,39 @@
   "jobs": [
     {
       "id": 1,
-      "title": "dds",
-      "description": "sdf",
-      "type": "Remote",
-      "category": "Development"
+      "userId": 1,
+      "title": "Title 1",
+      "description": "Description 1",
+      "type": "Full Time",
+      "category": "Office administration"
     }
   ],
-  "likes": [],
-  "candidates": [],
+  "likes": [
+    {
+      "userId": 3,
+      "jobId": 1,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "jobId": 1,
+      "id": 2
+    }
+  ],
+  "candidates": [
+    {
+      "userId": 2,
+      "jobId": 1,
+      "status": "approved",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "jobId": 1,
+      "status": "approved",
+      "id": 2
+    }
+  ],
   "types": [
     {
       "id": 1,
@@ -46,7 +71,7 @@
       "id": 2,
       "name": "user",
       "email": "user@foo.bar",
-      "password": "усер",
+      "password": "user",
       "role": "user"
     },
     {

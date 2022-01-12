@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { title } from '../../validators/title.validator';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from 'src/app/auth/models/user.model';
 
 @Component({
   selector: 'app-job-form',
@@ -18,17 +20,21 @@ export class JobFormComponent implements OnInit, OnDestroy {
   categories: Category[];
   types: Type[];
   destroy$ = new Subject<boolean>();
+  loggedUser: User;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private jobsService: JobsService
+    private jobsService: JobsService,
+    private authService: AuthService,
   ) {
   }
 
   ngOnInit(): void {
     this.buildForm();
+
+    this.loggedUser = this.authService.getLoggedUserFromLocalStorage();
 
     this.jobsService.getCategories$().subscribe({
       next: (response) => {
@@ -87,6 +93,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
   private buildForm(job?: Job): void {
     this.formGroup = this.fb.group({
       id: job?.id,
+      userId: this.loggedUser?.id,
       title: [job?.title || '', [Validators.required]],
       description: [job?.description || '', [Validators.required]],
       type: [job?.type || this.types && this.types[0]?.name, [Validators.required]],

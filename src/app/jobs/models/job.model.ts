@@ -1,11 +1,12 @@
 export interface Job {
   id: number;
+  userId: number;
   title: string;
   description?: string;
   type: string;
   category: string;
-  likes?: Like[]
-  candidates?: Candidate[]
+  likes?: Like[];
+  candidates?: Candidate[];
 }
 
 export interface Category {

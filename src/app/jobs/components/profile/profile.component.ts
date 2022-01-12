@@ -66,4 +66,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required]],
     });
   }
+
+  onDestroyAccount(): void {
+    this.authService.deleteUser$(this.loggedUser?.id).subscribe({
+      next: () => {
+        this.authService.logout();
+        this.router.navigate(['/auth', 'login']);
+      }
+    });
+  }
 }
