@@ -23,16 +23,16 @@
   </div>
 
   <div>
-    <label for="typeId">Type:</label>
-    <select id="typeId" formControlName="typeId">
-      <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+    <label for="type">Type:</label>
+    <select id="type" formControlName="type">
+      <option *ngFor="let type of types" [value]="type.name">{{type.name}}</option>
     </select>
   </div>
 
   <div>
-    <label for="catId">Category:</label>
-    <select id="catId" formControlName="catId">
-      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
     </select>
   </div>
 

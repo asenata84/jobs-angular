@@ -2,9 +2,10 @@ export interface Job {
   id: number;
   title: string;
   description?: string;
-  typeId: string;
-  catId: number;
+  type: string;
+  category: string;
   likes?: Like[]
+  candidates?: Candidate[]
 }
 
 export interface Category {

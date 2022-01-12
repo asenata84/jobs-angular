@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { JobsRoutingModule } from './jobs-routing.module';
 import { CandidatesListComponent } from './components/candidates-list/candidates-list.component';
 import { CandidatesItemComponent } from './components/candidates-item/candidates-item.component';
+import { MyJobsListComponent } from './components/my-jobs-list/my-jobs-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { CandidatesItemComponent } from './components/candidates-item/candidates
   ],
   declarations: [
     JobsListComponent,
+    MyJobsListComponent,
+    ProfileComponent,
     JobItemComponent,
     JobFormComponent,
     JobsComponent,

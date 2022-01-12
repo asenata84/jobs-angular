@@ -18,6 +18,10 @@ export class JobsService {
     return this.http.get<Job[]>(`${environment.apiUrl}/jobs?_embed=likes`);
   }
 
+  getMyJobs$(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${environment.apiUrl}/jobs?_embed=likes&_embed=candidates`);
+  }
+
   getCategories$(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.apiUrl}/cats`);
   }

@@ -39,6 +39,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
     this.jobsService.getTypes$().subscribe({
       next: (response) => {
         this.types = response;
+        this.buildForm();
       }
     });
 
@@ -86,10 +87,10 @@ export class JobFormComponent implements OnInit, OnDestroy {
   private buildForm(job?: Job): void {
     this.formGroup = this.fb.group({
       id: job?.id,
-      title: [job?.title || '', [Validators.required, title()]],
-      description: [job?.description || ''],
-      typeId: job?.typeId || this.types && this.types[0]?.id,
-      catId: job?.catId || this.categories && this.categories[0]?.id,
+      title: [job?.title || '', [Validators.required]],
+      description: [job?.description || '', [Validators.required]],
+      type: [job?.type || this.types && this.types[0]?.name, [Validators.required]],
+      category: [job?.category || this.categories && this.categories[0]?.name, [Validators.required]]
     });
   }
 }

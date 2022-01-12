@@ -5,6 +5,8 @@ import { JobsListComponent } from './components/jobs-list/jobs-list.component';
 import { JobFormComponent } from './components/job-form/job-form.component';
 import { AclGuard } from '../guards/acl.guard';
 import { CandidatesListComponent } from './components/candidates-list/candidates-list.component';
+import { MyJobsListComponent } from './components/my-jobs-list/my-jobs-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Route[] = [
   {
@@ -12,8 +14,16 @@ const routes: Route[] = [
     component: JobsComponent,
     children: [
       {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
         path: 'jobs',
         component: JobsListComponent
+      },
+      {
+        path: 'jobs/mine',
+        component: MyJobsListComponent
       },
       {
         path: 'jobs/edit',

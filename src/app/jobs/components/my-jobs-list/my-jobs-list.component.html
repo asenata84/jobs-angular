@@ -1,7 +1,5 @@
 <div>
-  <h2>Jobs</h2>
-
-  <a *ngIf="hasPermissions" routerLink="/main/jobs/edit">Add new</a>
+  <h2>My Jobs</h2>
 
   <section>
     <app-job-item *ngFor="let job of jobs" [job]="job" (deleteClicked)="onDelete($event)"

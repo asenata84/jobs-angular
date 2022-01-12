@@ -1,9 +1,11 @@
 <nav class="nav-menu">
-  <ul>
-    <li routerLink="/">Home</li>
+  <ul *ngIf="hasUser">
+    <li *ngIf=" userRole !== 'organization'" routerLink="/main/jobs/mine" class="pointer">My Jobs</li>
 
-    <li routerLink="/main/jobs" class="stretched">Jobs</li>
+    <li *ngIf="userRole !== 'organization'" routerLink="/main/profile" class="pointer">Profile</li>
 
-    <li *ngIf="hasUser" (click)="onLogout()" class="pointer">Logout</li>
+    <li routerLink="/main/jobs" class="pointer" class="stretched pointer">Jobs</li>
+
+    <li (click)="onLogout()" class="pointer">Logout</li>
   </ul>
 </nav>

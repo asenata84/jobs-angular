@@ -38,11 +38,11 @@ export class AuthService {
   hasPermissions(role: string): boolean {
     const loggedUser = this.getLoggedUserFromLocalStorage();
 
-    return loggedUser.role === role;
+    return loggedUser?.role === role;
   }
 
   setLoggedUserInLocalStorage(user: User): void {
-    delete user.password;
+    delete user?.password;
 
     localStorage.setItem('loggedUser', JSON.stringify(user));
 
@@ -65,5 +65,13 @@ export class AuthService {
 
   setHasUser(value: boolean): void {
     this.hasUser$.next(value);
+  }
+
+  patchUser$(user: User): Observable<User> {
+    return this.http.patch<User>(`${environment.apiUrl}/users/${user.id}`, user);
+  }
+
+  getUserByEmail$(email: string): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users?email=${email}`);
   }
 }

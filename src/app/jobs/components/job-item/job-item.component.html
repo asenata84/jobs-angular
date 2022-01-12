@@ -1,7 +1,10 @@
 <article>
-  <h3>{{ job.title }}</h3>
+  <h2>{{ job.title }}</h2>
 
-  <p>{{ job.description }}</p>
+  <p><strong>Category: </strong>{{ job.category }}</p>
+  <p><strong>Type: </strong>{{ job.type }}</p>
+
+  <p><i>{{ job.description }}</i></p>
 
   <div *ngIf="hasOrganizationPermissions">
     <a class="button-edit" [routerLink]="['/main', 'jobs', 'edit', job.id]">Edit</a>
@@ -12,7 +15,7 @@
   <div *ngIf="hasUserPermissions">
     <button *ngIf="!candidate?.status" class="button-edit" (click)="candidate?.id ? onRemoveApply() : onApply()">{{
       candidate?.id
-      ? 'Remove candidate'
+      ? 'Remove application'
       : 'Apply for this job'
       }}</button>
     <span>{{likesCount}}</span>&nbsp;

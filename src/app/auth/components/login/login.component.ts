@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.login$(body).subscribe({
       next: (user) => {
-        this.authService.setLoggedUserInLocalStorage(user);
+        if (user) {
+          this.authService.setLoggedUserInLocalStorage(user);
+        }
 
         this.router.navigate(['/main']);
       }
