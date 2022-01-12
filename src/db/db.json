@@ -80,6 +80,13 @@
       "email": "user1@foo.bar",
       "password": "user1",
       "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "user2",
+      "email": "user2@foo.bar",
+      "password": "user2",
+      "role": "user"
     }
   ]
 }
